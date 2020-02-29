@@ -35,11 +35,11 @@ public class Game extends GameInformation
 	
 	public void roundSetup()
 	{
-		Player human = new Human();
-//		Player bot = new Bot();
+//		Player human = new Human();
+		Player bot = new Bot();
 		
 		setDealer(new Dealer());
-		setPlayer(human);
+		setPlayer(bot);
 		setDeck(new Deck());
 		
 		getDeck().shuffleDeck();
