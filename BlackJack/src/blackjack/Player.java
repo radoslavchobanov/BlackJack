@@ -1,5 +1,8 @@
 package blackjack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 	int id;
 	String type;
@@ -131,13 +134,29 @@ public class Player {
 	}
 	public boolean isHandSoft()
 	{
-		for(Card card : getHand().getHand())
+		int tmpHandValue = 0;
+		Card ace = new Card();
+		Hand playerHand = getHand();
+		
+		for(Card card : playerHand.getHand())
 		{
 			if(card.getValue() == 11)
 			{
-				return true;
+				ace = card;
+				for(Card nestedCard : playerHand.getHand())
+				{
+					if(nestedCard != ace)
+					{
+						tmpHandValue += nestedCard.getValue();
+					}
+				}
+				if(tmpHandValue + ace.getValue() <= 21)
+				{
+					return true;
+				}
 			}
 		}
+		
 		return false;
 	}
 	public boolean isHandHard()

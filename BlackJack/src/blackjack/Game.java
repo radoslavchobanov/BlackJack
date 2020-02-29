@@ -222,6 +222,8 @@ public class Game extends GameInformation
 		int dealerFirstCardValue = this.getDealer().getHand().getHand().get(0).getCardPoints();
 		int playerHandValue = this.getPlayer().getHandValue();
 		
+		
+		
 		if(getPlayer().isHandHard())
 		{
 			if(playerHandValue >= 4 && playerHandValue <= 8)

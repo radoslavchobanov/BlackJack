@@ -9,12 +9,13 @@ package blackjack;
 
 public class GameInformation
 {	
-	public static final int numberOfSimulations = 100;
+	public static final int numberOfSimulations = 100000;
 	
+	public static final int numberOfDecks = 6;
 	
 //gameRules
-	public static final boolean isDoubleAllowed = false;
-	public static final boolean isSurrenderAllowed = false;
+	public static final boolean isDoubleAllowed = true;
+	public static final boolean isSurrenderAllowed = true;
 	public static final boolean isDoubleAfterSplitAllowed = false;
 	
 //main variables
@@ -41,6 +42,7 @@ public class GameInformation
 	private double wonRoundsPercent;
 	private double lostRoundsPercent;
 	private double winRate;
+	private double blackJackProbability;
 	
 	private double roundsWonWith_MoreThan17pts_hand_Percent;
 	private double roundsWonWith_From12To16pts_hand_Percent;
@@ -61,6 +63,7 @@ public class GameInformation
 		this.setWonRoundsPercent(calculateWonRoundsPercent());
 		this.setLostRoundsPercent(calculateLostRoundsPercent());
 		this.setWinRate(calculateWinRate());
+		this.setBlackJackProbability(calculateBlackJackProbability());
 	}
 
 	public int getStartBJs() {
@@ -152,6 +155,14 @@ public class GameInformation
 		this.winRate = winRate;
 	}
 
+	public double getBlackJackProbability() {
+		return blackJackProbability;
+	}
+
+	public void setBlackJackProbability(double blackJackProbability) {
+		this.blackJackProbability = blackJackProbability;
+	}
+
 	public double calculateWonRoundsPercent()
 	{
 		int totalRounds;
@@ -193,6 +204,20 @@ public class GameInformation
 		return roundAvoid(winRate, 3);
 	}
 	
+	public double calculateBlackJackProbability()
+	{
+		double totalRounds;
+		double blackJacks;
+		double blackJackProbability;
+		
+		totalRounds = this.getTotalRounds();
+		blackJacks = this.getStartBJs();
+		
+		blackJackProbability = blackJacks / totalRounds;
+		
+		return roundAvoid(blackJackProbability, 4);
+	}
+	
 	public void printTotalRounds()
 	{
 		System.out.println("Total : " + getTotalRounds());
@@ -216,6 +241,10 @@ public class GameInformation
 	{
 		System.out.println("W/L : " + getWinRate());
 	}
+	public void printBJProbability()
+	{
+		System.out.println("BJ Probability : " + getBlackJackProbability());
+	}
 	public void printBJCount()
 	{
 		System.out.println("BJ : " + getStartBJs());
@@ -227,6 +256,7 @@ public class GameInformation
 		printLostRounds();
 		printEqualRounds();
 		printWinRate();
+		printBJProbability();
 		printBJCount();
 	}
 	
