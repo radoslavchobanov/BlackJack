@@ -9,7 +9,7 @@ package blackjack;
 
 public class GameInformation
 {	
-	public static final int numberOfSimulations = 100000;
+	public static final int numberOfSimulations = 1000000;
 	
 	public static final int numberOfDecks = 6;
 	
